@@ -1,6 +1,7 @@
 "use client";
 
 import { useLanguage } from "@/components/language-context";
+import numberToWords from "number-to-words";
 
 export function InvoicePreview({ invoiceData }) {
   const { language, t } = useLanguage();
@@ -8,14 +9,21 @@ export function InvoicePreview({ invoiceData }) {
   // Calculate subtotal and total
   const calculateTotals = () => {
     let subtotal = 0;
+    let taxTotal = 0;
 
     invoiceData.items.forEach((item) => {
-      subtotal += item.quantity * item.unitPrice; // Changed 'rate' to 'unitPrice'
+      const quantity = Number(item.quantity) || 0;
+      const unitPrice = Number(item.unitPrice) || 0;
+      const taxRate = Number(item.taxRate) || 0;
+
+      const lineTotal = quantity * unitPrice;
+      subtotal += lineTotal;
+      taxTotal += lineTotal * (taxRate / 100);
     });
 
     return {
       subtotal: subtotal.toFixed(2),
-      total: subtotal.toFixed(2), // Add tax calculations if needed
+      total: (subtotal + taxTotal).toFixed(2),
     };
   };
 
@@ -23,10 +31,11 @@ export function InvoicePreview({ invoiceData }) {
 
   // Format number based on currency
   const formatCurrency = (number) => {
+    const num = Number(number) || 0; // Default to 0 if NaN
     if (language === "id") {
-      return new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR" }).format(number);
+      return new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR" }).format(num);
     } else {
-      return new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(number);
+      return new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(num);
     }
   };
 
@@ -40,7 +49,7 @@ export function InvoicePreview({ invoiceData }) {
     }
   };
 
-  const currencySymbol = language === "id" ? "Rp" : "$";
+  const totalInWords = numberToWords.toWords(Math.floor(total || 0));
 
   return (
     <div className="border rounded-lg p-4 bg-white text-black text-sm">
@@ -53,7 +62,7 @@ export function InvoicePreview({ invoiceData }) {
 
       <div className="mb-6">
         <h3 className="font-semibold mb-1">{t("Bill to")}:</h3>
-        <p>{invoiceData.client?.name || ""}</p> {/* Changed 'to' to 'client' */}
+        <p>{invoiceData.client?.name || ""}</p>
         <p>{invoiceData.client?.address || ""}</p>
         <p>{invoiceData.client?.city || ""}</p>
         <p>{invoiceData.client?.email || ""}</p>
@@ -83,9 +92,9 @@ export function InvoicePreview({ invoiceData }) {
           {invoiceData.items.map((item) => (
             <tr key={item.id}>
               <td className="py-2">{item.description || ""}</td>
-              <td className="text-center py-2">{item.quantity}</td>
-              <td className="text-center py-2">{formatCurrency(item.unitPrice)}</td> {/* Changed 'rate' to 'unitPrice' */}
-              <td className="text-right py-2">{formatCurrency(item.quantity * item.unitPrice)}</td>
+              <td className="text-center py-2">{item.quantity || 0}</td>
+              <td className="text-center py-2">{formatCurrency(item.unitPrice)}</td>
+              <td className="text-right py-2">{formatCurrency((Number(item.quantity) || 0) * (Number(item.unitPrice) || 0))}</td>
             </tr>
           ))}
         </tbody>
@@ -103,7 +112,7 @@ export function InvoicePreview({ invoiceData }) {
         <div className="flex justify-between w-1/2 text-gray-600 text-xs">
           <span>{t("Total in words")}:</span>
           <span>
-            {t("Zero")} {language === "id" ? "Rupiah" : "Dollars"} {/* Update with actual number-to-words logic if needed */}
+            {totalInWords} {language === "id" ? "Rupiah" : "Dollars"}
           </span>
         </div>
       </div>
@@ -115,13 +124,13 @@ export function InvoicePreview({ invoiceData }) {
         </div>
         <div>
           <h4 className="font-semibold">{t("Payment terms")}:</h4>
-          <p className="text-gray-600">{invoiceData.notes || ""}</p> {/* Update if you add paymentTerms */}
+          <p className="text-gray-600">{invoiceData.notes || ""}</p>
         </div>
         <div>
           <h4 className="font-semibold">{t("Please send the payment to this address")}</h4>
-          <p className="text-gray-600">{t("Bank")}: Your Bank Name</p>
-          <p className="text-gray-600">{t("Account name")}: Your Company</p>
-          <p className="text-gray-600">{t("Account no")}: XXXX-XXXX-XXXX</p>
+          <p className="text-gray-600">{t("Bank")}: {invoiceData.sender?.bank || ""}</p>
+          <p className="text-gray-600">{t("Account name")}: {invoiceData.sender?.accountName || ""}</p>
+          <p className="text-gray-600">{t("Account no")}: {invoiceData.sender?.accountNumber || ""}</p>
         </div>
         <p className="text-gray-600 text-xs mt-4">
           {t("If you have any questions concerning this invoice, use the following contact information:")}
@@ -131,4 +140,4 @@ export function InvoicePreview({ invoiceData }) {
       </div>
     </div>
   );
-        }
+}
