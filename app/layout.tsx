@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ["latin"] })
 export const metadata: Metadata = {
   title: "Invoise - Professional Invoice Generator",
   description: "Create and manage professional invoices easily with multi-currency support",
-    generator: 'v0.dev'
+
 }
 
 export default function RootLayout({
