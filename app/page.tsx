@@ -368,11 +368,11 @@ function InvoiceApp() {
           </div>
         </div>
       </main>
-
+      
       <footer className="bg-white dark:bg-gray-800 border-t py-6 text-center">
-        <p className="text-emerald-600 font-medium">Developed by Aditya Akbar</p>
+        <p className="text-black dark:text-white font-small">Developed by Aditya Akbar</p>
       </footer>
-    </div>
+      </div>
   )
 }
 
