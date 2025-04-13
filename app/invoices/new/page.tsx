@@ -25,6 +25,9 @@ function NewInvoicePage() {
       city: "San Francisco, CA 94103",
       email: "billing@yourcompany.com",
       phone: "(555) 123-4567",
+      bank: "", // Added
+      accountName: "", // Added
+      accountNumber: "", // Added
     },
     client: {
       name: "",
@@ -226,6 +229,31 @@ function NewInvoicePage() {
                     />
                   </div>
                 </div>
+                {/* Added Bank Details */}
+                <div className="grid gap-2">
+                  <Label htmlFor="sender-bank">Bank</Label>
+                  <Input
+                    id="sender-bank"
+                    value={invoiceData.sender.bank}
+                    onChange={(e) => updateSenderInfo("bank", e.target.value)}
+                  />
+                </div>
+                <div className="grid gap-2">
+                  <Label htmlFor="sender-account-name">Account Name</Label>
+                  <Input
+                    id="sender-account-name"
+                    value={invoiceData.sender.accountName}
+                    onChange={(e) => updateSenderInfo("accountName", e.target.value)}
+                  />
+                </div>
+                <div className="grid gap-2">
+                  <Label htmlFor="sender-account-number">Account Number</Label>
+                  <Input
+                    id="sender-account-number"
+                    value={invoiceData.sender.accountNumber}
+                    onChange={(e) => updateSenderInfo("accountNumber", e.target.value)}
+                  />
+                </div>
               </div>
             </CardContent>
           </Card>
@@ -391,4 +419,4 @@ export default function Page() {
       <NewInvoicePage />
     </LanguageProvider>
   );
-      }
+              }
