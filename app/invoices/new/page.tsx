@@ -10,7 +10,7 @@ import { ArrowLeft, Plus, Trash2 } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import { InvoicePreview } from "@/components/invoice-preview";
-import { LanguageProvider } from "@/components/language-context";
+import { LanguageProvider, useLanguage } from "@/components/language-context";
 
 // Prevent static generation
 export function generateStaticParams() {
@@ -18,6 +18,8 @@ export function generateStaticParams() {
 }
 
 function NewInvoicePage() {
+  const { language, setLanguage } = useLanguage();
+
   const [invoiceData, setInvoiceData] = useState({
     invoiceNumber: "INV-" + Math.floor(1000 + Math.random() * 9000),
     issueDate: new Date().toISOString().split("T")[0],
@@ -104,6 +106,16 @@ function NewInvoicePage() {
     });
   };
 
+  const handleSaveDraft = () => {
+    console.log("Saving draft:", invoiceData);
+    // Add logic to save the draft (e.g., to localStorage or an API)
+  };
+
+  const handleCreateInvoice = () => {
+    console.log("Creating invoice:", invoiceData);
+    // Add logic to create the invoice (e.g., send to an API)
+  };
+
   return (
     <div className="flex min-h-screen w-full flex-col">
       <header className="sticky top-0 z-10 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
@@ -115,8 +127,24 @@ function NewInvoicePage() {
         </Button>
         <h1 className="text-lg font-semibold">Create New Invoice</h1>
         <div className="ml-auto flex items-center gap-2">
-          <Button variant="outline">Save Draft</Button>
-          <Button>Create Invoice</Button>
+          <Button
+            variant="outline"
+            onClick={() => setLanguage("en")}
+            disabled={language === "en"}
+          >
+            English
+          </Button>
+          <Button
+            variant="outline"
+            onClick={() => setLanguage("id")}
+            disabled={language === "id"}
+          >
+            Bahasa Indonesia
+          </Button>
+          <Button variant="outline" onClick={handleSaveDraft}>
+            Save Draft
+          </Button>
+          <Button onClick={handleCreateInvoice}>Create Invoice</Button>
         </div>
       </header>
       <main className="flex flex-1 flex-col gap-4 p-4 md:flex-row md:gap-8 md:p-8">
@@ -307,7 +335,7 @@ function NewInvoicePage() {
                           id={`item-tax-${item.id}`}
                           type="number"
                           min="0"
-                          max="100 regarde
+                          max="100" // Fixed syntax error
                           value={item.taxRate}
                           onChange={(e) => updateLineItem(item.id, "taxRate", Number.parseFloat(e.target.value) || 0)}
                         />
@@ -368,4 +396,4 @@ export default function Page() {
       <NewInvoicePage />
     </LanguageProvider>
   );
-                                                      }
+                                                        }
