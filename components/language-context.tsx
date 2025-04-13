@@ -160,7 +160,7 @@ const defaultContextValue = {
 const LanguageContext = createContext(defaultContextValue)
 
 export function LanguageProvider({ children }) {
-  const [language, setLanguage] = useState("en")
+  const [language, setLanguage] = useState("id")
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
