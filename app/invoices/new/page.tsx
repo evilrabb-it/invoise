@@ -12,11 +12,6 @@ import { useState } from "react";
 import { InvoicePreview } from "@/components/invoice-preview";
 import { LanguageProvider, useLanguage } from "@/components/language-context";
 
-// Prevent static generation
-export function generateStaticParams() {
-  return [];
-}
-
 function NewInvoicePage() {
   const { language, setLanguage } = useLanguage();
 
@@ -335,7 +330,7 @@ function NewInvoicePage() {
                           id={`item-tax-${item.id}`}
                           type="number"
                           min="0"
-                          max="100" // Fixed syntax error
+                          max="100"
                           value={item.taxRate}
                           onChange={(e) => updateLineItem(item.id, "taxRate", Number.parseFloat(e.target.value) || 0)}
                         />
@@ -396,4 +391,4 @@ export default function Page() {
       <NewInvoicePage />
     </LanguageProvider>
   );
-                                                        }
+      }
