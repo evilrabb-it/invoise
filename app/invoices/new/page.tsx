@@ -1,16 +1,21 @@
-"use client"
+"use client";
 
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Separator } from "@/components/ui/separator"
-import { Textarea } from "@/components/ui/textarea"
-import { ArrowLeft, Plus, Trash2 } from "lucide-react"
-import Link from "next/link"
-import { useState } from "react"
-import { InvoicePreview } from "@/components/invoice-preview"
-import { LanguageProvider } from "@/components/language-context"
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Separator } from "@/components/ui/separator";
+import { Textarea } from "@/components/ui/textarea";
+import { ArrowLeft, Plus, Trash2 } from "lucide-react";
+import Link from "next/link";
+import { useState } from "react";
+import { InvoicePreview } from "@/components/invoice-preview";
+import { LanguageProvider } from "@/components/language-context";
+
+// Prevent static generation
+export function generateStaticParams() {
+  return [];
+}
 
 function NewInvoicePage() {
   const [invoiceData, setInvoiceData] = useState({
@@ -41,7 +46,7 @@ function NewInvoicePage() {
       },
     ],
     notes: "",
-  })
+  });
 
   const addLineItem = () => {
     setInvoiceData({
@@ -56,28 +61,28 @@ function NewInvoicePage() {
           taxRate: 0,
         },
       ],
-    })
-  }
+    });
+  };
 
   const removeLineItem = (id) => {
-    if (invoiceData.items.length === 1) return
+    if (invoiceData.items.length === 1) return;
     setInvoiceData({
       ...invoiceData,
       items: invoiceData.items.filter((item) => item.id !== id),
-    })
-  }
+    });
+  };
 
   const updateLineItem = (id, field, value) => {
     setInvoiceData({
       ...invoiceData,
       items: invoiceData.items.map((item) => {
         if (item.id === id) {
-          return { ...item, [field]: value }
+          return { ...item, [field]: value };
         }
-        return item
+        return item;
       }),
-    })
-  }
+    });
+  };
 
   const updateSenderInfo = (field, value) => {
     setInvoiceData({
@@ -86,8 +91,8 @@ function NewInvoicePage() {
         ...invoiceData.sender,
         [field]: value,
       },
-    })
-  }
+    });
+  };
 
   const updateClientInfo = (field, value) => {
     setInvoiceData({
@@ -96,8 +101,8 @@ function NewInvoicePage() {
         ...invoiceData.client,
         [field]: value,
       },
-    })
-  }
+    });
+  };
 
   return (
     <div className="flex min-h-screen w-full flex-col">
@@ -302,7 +307,7 @@ function NewInvoicePage() {
                           id={`item-tax-${item.id}`}
                           type="number"
                           min="0"
-                          max="100"
+                          max="100 regarde
                           value={item.taxRate}
                           onChange={(e) => updateLineItem(item.id, "taxRate", Number.parseFloat(e.target.value) || 0)}
                         />
@@ -354,7 +359,7 @@ function NewInvoicePage() {
         <p className="text-emerald-600 font-medium">Developed by Aditya Akbar</p>
       </footer>
     </div>
-  )
+  );
 }
 
 export default function Page() {
@@ -362,5 +367,5 @@ export default function Page() {
     <LanguageProvider>
       <NewInvoicePage />
     </LanguageProvider>
-  )
-}
+  );
+                                                      }
