@@ -66,6 +66,7 @@ const translations = {
     Total: "Total",
     "Total in words": "Total in words",
     Zero: "Zero",
+    amount_zero: "Zero Dollars",
     "Additional notes": "Additional notes",
     "Payment terms": "Payment terms",
     "Please send the payment to this address": "Please send the payment to this address",
@@ -137,6 +138,7 @@ const translations = {
     Total: "Total",
     "Total in words": "Total dalam kata",
     Zero: "Nol",
+    amount_zero:"Nol Rupiah"
     "Additional notes": "Catatan tambahan",
     "Payment terms": "Syarat pembayaran",
     "Please send the payment to this address": "Silakan kirim pembayaran ke alamat ini",
