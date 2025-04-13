@@ -138,7 +138,7 @@ const translations = {
     Total: "Total",
     "Total in words": "Total dalam kata",
     Zero: "Nol",
-    amount_zero:"Nol Rupiah"
+    amount_zero:"Nol Rupiah",
     "Additional notes": "Catatan tambahan",
     "Payment terms": "Syarat pembayaran",
     "Please send the payment to this address": "Silakan kirim pembayaran ke alamat ini",
