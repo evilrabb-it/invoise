@@ -49,7 +49,7 @@ export function InvoicePreview({ invoiceData }) {
     }
   };
 
-  const totalInWords = numberToWords.toWords(Math.floor(total || 0));
+  const totalInWords = total === '0.00' ? t('amount_zero') : `${numberToWords.toWords(Math.floor(total))} ${t('currency')}`;
 
   return (
     <div className="border rounded-lg p-4 bg-white text-black text-sm">
