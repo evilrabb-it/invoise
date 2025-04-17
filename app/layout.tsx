@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   title: "Invoise - Automating Billing",
   description: "Create and manage invoices easily with multi-currency support",
   icons: {
-    icon: "/favicon.png", 
+    icon: "/favicon.png",
   },
   author: "Aditya Akbar",
   openGraph: {
@@ -28,7 +28,6 @@ export const metadata: Metadata = {
     ],
     locale: "en_US",
     type: "website",
-    published_time: "2025-04-13T00:00:00Z",
   },
   twitter: {
     card: "summary_large_image",
@@ -46,9 +45,29 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* Open Graph and other metadata */}
+        {/* Meta tag for published time */}
+        <meta property="article:published_time" content="2025-04-13T00:00:00Z" />
         <meta name="author" content="Aditya Akbar" />
-        <meta name="published_time" content="2025-04-13T00:00:00Z" />
+        {/* JSON-LD structured data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              name: "Invoise",
+              url: "https://invoise.vercel.app",
+              author: {
+                "@type": "Person",
+                name: "Aditya Akbar",
+              },
+              datePublished: "2025-04-13",
+              image: "https://invoise.vercel.app/Invoise.png",
+              description:
+                "Create and manage invoices easily with multi-currency support",
+            }),
+          }}
+        />
       </head>
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
