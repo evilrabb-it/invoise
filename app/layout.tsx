@@ -8,14 +8,14 @@ const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: "Invoise - Automating Billing",
-  description: "Create and manage invoices easily with multi-currency support",
+  description: "A web app built with Next.js, TypeScript, and Shadcn UI to generate professional invoices.",
   icons: {
     icon: "/favicon.png",
   },
   author: "Aditya Akbar",
   openGraph: {
     title: "Invoise - Automating Billing",
-    description: "Create and manage invoices easily with multi-currency support",
+    description: "A web app built with Next.js, TypeScript, and Shadcn UI to generate professional invoices.",
     url: "https://invoise.vercel.app",
     siteName: "Invoise",
     images: [
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Invoise - Automating Billing",
-    description: "Create and manage invoices easily with multi-currency support",
+    description: "A web app built with Next.js, TypeScript, and Shadcn UI to generate professional invoices.",
     images: ["https://invoise.vercel.app/Invoise.png"],
   },
 }
