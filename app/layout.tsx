@@ -7,7 +7,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Invoise | Instant Invoice Generator",
+  title: "Invoise - Automating Billing",
   description: "Create and manage invoices easily with multi-currency support",
    icons:{
     icon: "/favicon.png", 
