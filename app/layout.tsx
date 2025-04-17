@@ -12,6 +12,7 @@ export const metadata: Metadata = {
   icons: {
     icon: "/favicon.png", 
   },
+  author: "Aditya Akbar",
   openGraph: {
     title: "Invoise - Automating Billing",
     description: "Create and manage invoices easily with multi-currency support",
@@ -27,6 +28,7 @@ export const metadata: Metadata = {
     ],
     locale: "en_US",
     type: "website",
+    published_time: "2025-04-13T00:00:00Z",
   },
   twitter: {
     card: "summary_large_image",
