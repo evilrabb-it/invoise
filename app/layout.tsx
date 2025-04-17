@@ -45,6 +45,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        {/* Open Graph and other metadata */}
+        <meta name="author" content="Aditya Akbar" />
+        <meta name="published_time" content="2025-04-13T00:00:00Z" />
+      </head>
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
           {children}
@@ -52,4 +57,4 @@ export default function RootLayout({
       </body>
     </html>
   )
-} 
+}
