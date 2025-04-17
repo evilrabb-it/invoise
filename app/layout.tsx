@@ -7,14 +7,14 @@ import { ThemeProvider } from "@/components/theme-provider"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Invoise - Automating Billing",
+  title: "Invoise - Invoice Generator",
   description: "A web app built with Next.js, TypeScript, and Shadcn UI to generate professional invoices.",
   icons: {
     icon: "/favicon.png",
   },
   author: "Aditya Akbar",
   openGraph: {
-    title: "Invoise - Automating Billing",
+    title: "Invoise - Invoice Generator",
     description: "A web app built with Next.js, TypeScript, and Shadcn UI to generate professional invoices.",
     url: "https://invoise.vercel.app",
     siteName: "Invoise",
